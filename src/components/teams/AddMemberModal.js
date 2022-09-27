@@ -22,7 +22,7 @@ export default function AddMemberModal({ open, control, team }) {
         setDuplicateUserError(false);
         setEmail('');
         control();
-    }, [])
+    }, [control])
 
     // RTK Query
     // First Time no request.. SKIP
@@ -42,7 +42,7 @@ export default function AddMemberModal({ open, control, team }) {
             toast.error(updatedError?.data, TOAST);
 
         }
-    }, [updateIsSuccess, updatedIsError, updatedError?.data])
+    }, [updateIsSuccess, updatedIsError, updatedError?.data, reset])
 
     // Use Effecte after matchedUser found/response
     useEffect(() => {

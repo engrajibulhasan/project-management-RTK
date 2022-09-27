@@ -20,7 +20,7 @@ export default function CreateProjectModal({ open, control }) {
         // setTeamCheck(false);
         setTeamName('');
         control();
-    }, [])
+    }, [control])
 
     // RTK Query
     // Check is Team Available
@@ -37,7 +37,7 @@ export default function CreateProjectModal({ open, control }) {
         } else if (isError) {
             toast.error(responseError.data, TOAST);
         }
-    }, [isSuccess, isError, responseError])
+    }, [isSuccess, isError, responseError, reset])
 
     // Debounce Function. Step Two
     const debounceHandler = (fn, delay) => {

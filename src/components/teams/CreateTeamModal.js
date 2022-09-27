@@ -24,7 +24,7 @@ export default function CreateTeamModal({ open, control }) {
         setDescription('');
         setBgColor('');
         control();
-    }, [])
+    }, [control])
 
     // RTK Query
     const [createTeam, { isLoading, isSuccess, isError, error: responseError }] = useCreateTeamMutation();
@@ -41,7 +41,7 @@ export default function CreateTeamModal({ open, control }) {
         } else if (isError) {
             toast.error(responseError.data, TOAST);
         }
-    }, [isSuccess, isError, responseError])
+    }, [isSuccess, isError, responseError, reset])
 
 
     // Debounce Function. Step Two
