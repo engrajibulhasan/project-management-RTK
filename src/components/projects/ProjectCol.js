@@ -24,13 +24,15 @@ const ProjectCol = ({ projects, projectState }) => {
     }
 
     // DND
-    const [drop] = useDrop(() => ({
+    const [{ isOver }, drop] = useDrop(() => ({
         accept: "project",
         drop: (item) => handleAddToState(item),
         collect: (monitor) => ({
             isOver: !!monitor.isOver()
         })
     }))
+
+    console.log(isOver);
 
     return (
         <div className="flex flex-col rounded-md flex-shrink-0 w-64 bg-violet-200" ref={drop}>

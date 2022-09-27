@@ -16,7 +16,7 @@ const Project = ({ project }) => {
     const { bgColor, textColor, name: teamName } = team || {};
     const { name: ownerName, email: ownerEmail, avater } = owner || {};
 
-    const [drag] = useDrag(() => ({
+    const [{ isDragging }, drag] = useDrag(() => ({
         type: "project",
         item: { id: projectId, data: { ...project } },
         collect: (monitor) => ({
@@ -32,7 +32,7 @@ const Project = ({ project }) => {
         removeProject(id);
         toast.success("Project removed successfully", TOAST);
     }
-
+    console.log(isDragging);
     return (
         <div
             className={`relative  ${filterMatch(searchKey, projectName) && 'animate-pulse outline outline-2'}  border flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100`}
