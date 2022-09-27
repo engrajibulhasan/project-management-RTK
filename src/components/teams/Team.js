@@ -14,9 +14,9 @@ const Team = ({ team }) => {
         setOpened((prevState) => !prevState);
     }, [])
 
-    const membersControlModal = () => {
+    const membersControlModal = useCallback(() => {
         setMembersOpened((prevState) => !prevState);
-    };
+    }, []);
 
     // Team
     // users is the array of members
