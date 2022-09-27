@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import plusIcon from "../../assets/images/plus.svg";
 import teamsIcon from "../../assets/images/teams.svg";
 import AddMemberModal from './AddMemberModal';
@@ -10,9 +10,9 @@ const Team = ({ team }) => {
 
     const [opened, setOpened] = useState(false);
     const [membersOpened, setMembersOpened] = useState(false);
-    const controlModal = () => {
+    const controlModal = useCallback(() => {
         setOpened((prevState) => !prevState);
-    };
+    }, [])
 
     const membersControlModal = () => {
         setMembersOpened((prevState) => !prevState);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { BACKLOG, TOAST } from "../../constant";
@@ -15,12 +15,12 @@ export default function CreateProjectModal({ open, control }) {
 
 
     // Reset
-    const reset = () => {
+    const reset = useCallback(() => {
         setProjectName('');
         // setTeamCheck(false);
         setTeamName('');
         control();
-    }
+    }, [])
 
     // RTK Query
     // Check is Team Available

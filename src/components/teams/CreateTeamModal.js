@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,14 +17,14 @@ export default function CreateTeamModal({ open, control }) {
 
 
     // Reset
-    const reset = () => {
+    const reset = useCallback(() => {
         setTeamName('');
         setBgColor('');
         setTextColor('');
         setDescription('');
         setBgColor('');
         control();
-    }
+    }, [])
 
     // RTK Query
     const [createTeam, { isLoading, isSuccess, isError, error: responseError }] = useCreateTeamMutation();
@@ -41,7 +41,7 @@ export default function CreateTeamModal({ open, control }) {
         } else if (isError) {
             toast.error(responseError.data, TOAST);
         }
-    }, [isSuccess, isError, responseError, reset])
+    }, [isSuccess, isError, responseError])
 
 
     // Debounce Function. Step Two
