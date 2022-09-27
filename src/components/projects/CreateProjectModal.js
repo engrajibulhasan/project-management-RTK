@@ -78,7 +78,9 @@ export default function CreateProjectModal({ open, control }) {
 
         if (machedTeam?.length > 0) {
             createProject(data)
-            control();
+            setTimeout(() => {
+                control();
+            }, 1500);
         }
     }
 

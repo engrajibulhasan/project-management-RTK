@@ -94,7 +94,9 @@ export default function AddMemberModal({ open, control, team }) {
         e.preventDefault()
         if (memberPayload?.id) {
             updateTeam(memberPayload);
-            control();
+            setTimeout(() => {
+                control();
+            }, 1500);
 
         }
 

@@ -80,7 +80,10 @@ export default function CreateTeamModal({ open, control }) {
         }
         if (machedTeam?.length === 0) {
             createTeam(payload);
-            control();
+            setTimeout(() => {
+                control();
+            }, 1500);
+
         }
     }
 
