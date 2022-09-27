@@ -1,6 +1,5 @@
-# final-exam---subjective---project-manager-application-engrajibulhasan
-
-## Project Management Features
+# PROJECT MANAGEMENT APP using RTK
+## Features
 - Uer Registration
 - User Login
 - Header Avater and Name display (Extra feature)
