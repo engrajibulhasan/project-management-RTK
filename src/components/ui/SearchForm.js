@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import closeIcon from "../../assets/images/close.svg";
 import { clearFilters, searchKeyChanged } from "../../features/filter/filterSlice";
 
@@ -8,7 +8,7 @@ import { clearFilters, searchKeyChanged } from "../../features/filter/filterSlic
 const SearchForm = () => {
     const [searchKey, setSearchKey] = useState("")
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.auth) || {}
+
 
 
     // Debounce Function. Step Two

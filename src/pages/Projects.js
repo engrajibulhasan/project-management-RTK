@@ -11,7 +11,7 @@ import getFilteredProjects from '../utils/getFilteredProjects'
 const Projects = () => {
     const { user } = useSelector(state => state.auth) || {}
     const { email } = user || {};
-    const { data: projects, isLoading, isSuccess, isError, error: responseError } = useGetProjectsQuery(email, { skip: false });
+    const { data: projects, isLoading, isError, error: responseError } = useGetProjectsQuery(email, { skip: false });
 
 
     let content = '';

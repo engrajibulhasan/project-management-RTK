@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleMember from './SingleMember';
 const ViewMembersModal = ({ open, control, team, addModalControl }) => {
-    const { id: teamId, name: teamName, bgColor, textColor, description, owner, users, timestamp } = team || {};
+    const { textColor, owner, users } = team || {};
     let totalUser = users.length;
     let content = null
     if (users.length > 0) {

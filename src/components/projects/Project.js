@@ -13,8 +13,8 @@ const Project = ({ project }) => {
     const { user } = useSelector(state => state.auth) || {};
     const { searchKey } = useSelector(state => state.filters)
     const { id: projectId, name: projectName, state: projectType, team, timestamp, owner } = project || {};
-    const { id: teamId, bgColor, textColor, members, name: teamName } = team || {};
-    const { id: ownerId, name: ownerName, email: ownerEmail, avater } = owner || {};
+    const { bgColor, textColor, name: teamName } = team || {};
+    const { name: ownerName, email: ownerEmail, avater } = owner || {};
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "project",

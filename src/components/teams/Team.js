@@ -21,7 +21,7 @@ const Team = ({ team }) => {
     // Team
     // users is the array of members
     // Owner is an Object
-    const { id, name, bgColor, textColor, description, owner, users, timestamp } = team;
+    const { name, bgColor, textColor, description, users, timestamp } = team;
 
 
     return (

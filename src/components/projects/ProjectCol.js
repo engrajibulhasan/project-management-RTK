@@ -6,7 +6,7 @@ import ProjectColHeader from './ProjectColHeader';
 
 const ProjectCol = ({ projects, projectState }) => {
     // const [draggedProjects, setDraggedProjects] = useState([...projects]);
-    const [updateProject, { isLoading, isSuccess, isError, error }] = useUpdateProjectMutation()
+    const [updateProject, { }] = useUpdateProjectMutation()
 
 
     const handleAddToState = (item) => {
@@ -24,7 +24,7 @@ const ProjectCol = ({ projects, projectState }) => {
     }
 
     // DND
-    const [{ isOver }, drop] = useDrop(() => ({
+    const [{ }, drop] = useDrop(() => ({
         accept: "project",
         drop: (item) => handleAddToState(item),
         collect: (monitor) => ({

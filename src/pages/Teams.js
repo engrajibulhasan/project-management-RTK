@@ -10,7 +10,7 @@ import { useGetTeamsQuery } from '../features/teams/teamsApi'
 const Teams = () => {
     const { user } = useSelector(state => state.auth) || {}
     const { email } = user || {};
-    const { data: teams, isLoading, isSuccess, isError, error: responseError } = useGetTeamsQuery(email, { skip: false });
+    const { data: teams, isLoading, isError, error: responseError } = useGetTeamsQuery(email, { skip: false });
 
 
     let content = '';

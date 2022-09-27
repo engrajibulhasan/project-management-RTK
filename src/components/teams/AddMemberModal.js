@@ -9,7 +9,7 @@ import Error from "../ui/Error";
 import Spin from "../ui/Spin";
 
 export default function AddMemberModal({ open, control, team }) {
-    const { id: teamId, name: teamName, bgColor, textColor, description, owner, users, timestamp } = team || {};
+    const { id: teamId, users } = team || {};
     const [email, setEmail] = useState('');
     const [userCheck, setUserCheck] = useState(false);
     const [memberPayload, setMemberPayload] = useState({})
@@ -29,7 +29,7 @@ export default function AddMemberModal({ open, control, team }) {
     // User Check
     const { data: machedUser } = useGetUserQuery(email, { skip: !userCheck }) || {};
 
-    const [updateTeam, { data: updatedData, isLoading: updatedIsLoading, isSuccess: updateIsSuccess, isError: updatedIsError, error: updatedError }] = useUpdateTeamMutation();
+    const [updateTeam, { isLoading: updatedIsLoading, isSuccess: updateIsSuccess, isError: updatedIsError, error: updatedError }] = useUpdateTeamMutation();
 
     useEffect(() => {
         if (updateIsSuccess) {
@@ -42,7 +42,7 @@ export default function AddMemberModal({ open, control, team }) {
             toast.error(updatedError?.data, TOAST);
 
         }
-    }, [updateIsSuccess, updatedIsError])
+    }, [updateIsSuccess, updatedIsError, updatedIsError?.data])
 
     // Use Effecte after matchedUser found/response
     useEffect(() => {
@@ -68,7 +68,7 @@ export default function AddMemberModal({ open, control, team }) {
                 setDuplicateUserError(false);
             }
         }
-    }, [machedUser, updatedIsError])
+    }, [machedUser, updatedIsError, email, team, teamId, user.email, user?.name, users])
 
 
     // Debounce Function. Step Two

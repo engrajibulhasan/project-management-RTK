@@ -5,7 +5,7 @@ import Error from "../components/ui/Error";
 import { useLoginMutation } from "../features/auth/authApi";
 
 export default function Login() {
-    const [login, { data, isSuccess, isLoading, error: responseError }] = useLoginMutation();
+    const [login, { data, isLoading, error: responseError }] = useLoginMutation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -18,7 +18,7 @@ export default function Login() {
             navigate("/inbox");
             setError('')
         }
-    }, [data, responseError])
+    }, [data, responseError, navigate])
     const handleSubmit = (e) => {
         e.preventDefault();
         login({
