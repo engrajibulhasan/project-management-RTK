@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,15 +16,7 @@ export default function CreateTeamModal({ open, control }) {
     const [description, setDescription] = useState('');
 
 
-    // Reset
-    const reset = useCallback(() => {
-        setTeamName('');
-        setBgColor('');
-        setTextColor('');
-        setDescription('');
-        setBgColor('');
-        control();
-    }, [control])
+
 
     // RTK Query
     const [createTeam, { isLoading, isSuccess, isError, error: responseError }] = useCreateTeamMutation();
@@ -35,13 +27,18 @@ export default function CreateTeamModal({ open, control }) {
     useEffect(() => {
         if (isSuccess) {
             toast.success('Team created Successfull', TOAST);
-            setTimeout(() => {
-                reset();
-            }, 2000);
+
+            setTeamName('');
+            setBgColor('');
+            setTextColor('');
+            setDescription('');
+            setBgColor('');
+
+
         } else if (isError) {
             toast.error(responseError.data, TOAST);
         }
-    }, [isSuccess, isError, responseError, reset])
+    }, [isSuccess, isError, responseError])
 
 
     // Debounce Function. Step Two
@@ -83,6 +80,7 @@ export default function CreateTeamModal({ open, control }) {
         }
         if (machedTeam?.length === 0) {
             createTeam(payload);
+            control();
         }
     }
 
@@ -129,7 +127,7 @@ export default function CreateTeamModal({ open, control }) {
                                     onChange={(e) => setBgColor(e.target.value)}
                                     required
                                     className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                    placeholder="Background Color"
+                                    placeholder="Background Color hexa #000000 "
                                 />
                             </div>
                             <div>
@@ -144,7 +142,7 @@ export default function CreateTeamModal({ open, control }) {
                                     onChange={(e) => setTextColor(e.target.value)}
                                     required
                                     className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
-                                    placeholder="Text Color"
+                                    placeholder="Text Color hexa #ffffff"
                                 />
                             </div>
                             <div>

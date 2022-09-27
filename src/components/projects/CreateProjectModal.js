@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { BACKLOG, TOAST } from "../../constant";
@@ -14,13 +14,7 @@ export default function CreateProjectModal({ open, control }) {
     const [teamCheck, setTeamCheck] = useState(false)
 
 
-    // Reset
-    const reset = useCallback(() => {
-        setProjectName('');
-        // setTeamCheck(false);
-        setTeamName('');
-        control();
-    }, [control])
+
 
     // RTK Query
     // Check is Team Available
@@ -31,13 +25,15 @@ export default function CreateProjectModal({ open, control }) {
     useEffect(() => {
         if (isSuccess) {
             toast.success('Team created Successfull', TOAST);
-            setTimeout(() => {
-                reset();
-            }, 2000);
+            setProjectName('');
+            // setTeamCheck(false);
+            setTeamName('');
+            setTeamCheck(false)
+
         } else if (isError) {
             toast.error(responseError.data, TOAST);
         }
-    }, [isSuccess, isError, responseError, reset])
+    }, [isSuccess, isError, responseError])
 
     // Debounce Function. Step Two
     const debounceHandler = (fn, delay) => {
@@ -82,6 +78,7 @@ export default function CreateProjectModal({ open, control }) {
 
         if (machedTeam?.length > 0) {
             createProject(data)
+            control();
         }
     }
 

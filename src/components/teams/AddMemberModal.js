@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { TOAST } from "../../constant";
@@ -16,13 +16,7 @@ export default function AddMemberModal({ open, control, team }) {
     const [duplicateUserError, setDuplicateUserError] = useState(false);
     const { user } = useSelector(state => state.auth);
     console.log(users, "usersusersusers");
-    const reset = useCallback(() => {
-        setUserCheck(false);
-        setMemberPayload({});
-        setDuplicateUserError(false);
-        setEmail('');
-        control();
-    }, [control])
+
 
     // RTK Query
     // First Time no request.. SKIP
@@ -35,14 +29,15 @@ export default function AddMemberModal({ open, control, team }) {
         if (updateIsSuccess) {
             toast.success('Member Added Successfully', TOAST);
             // Using set time out for better ui presentation
-            setTimeout(() => {
-                reset();
-            }, 2000);
+            setUserCheck(false);
+            setMemberPayload({});
+            setDuplicateUserError(false);
+            setEmail('');
         } else if (updatedIsError) {
             toast.error(updatedError?.data, TOAST);
 
         }
-    }, [updateIsSuccess, updatedIsError, updatedError?.data, reset])
+    }, [updateIsSuccess, updatedIsError, updatedError?.data])
 
     // Use Effecte after matchedUser found/response
     useEffect(() => {
@@ -99,6 +94,7 @@ export default function AddMemberModal({ open, control, team }) {
         e.preventDefault()
         if (memberPayload?.id) {
             updateTeam(memberPayload);
+            control();
 
         }
 

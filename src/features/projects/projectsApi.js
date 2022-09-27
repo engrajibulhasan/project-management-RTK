@@ -4,7 +4,7 @@ export const projectsApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProjects: builder.query({
             query: (email) => ({
-                url: `/projects?participants_like=${email}`,
+                url: `/projects?participants_like=${email}&_sort=timestamp&_order=desc`,
                 method: "GET"
             }),
             keepUnusedDataFor: 600,

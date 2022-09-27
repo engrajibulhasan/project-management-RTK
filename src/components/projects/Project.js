@@ -32,7 +32,9 @@ const Project = ({ project }) => {
         removeProject(id);
         toast.success("Project removed successfully", TOAST);
     }
+
     console.log(isDragging);
+
     return (
         <div
             className={`relative  ${filterMatch(searchKey, projectName) && 'animate-pulse outline outline-2'}  border flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100`}
