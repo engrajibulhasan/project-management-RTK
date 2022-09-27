@@ -42,7 +42,7 @@ export default function AddMemberModal({ open, control, team }) {
             toast.error(updatedError?.data, TOAST);
 
         }
-    }, [updateIsSuccess, updatedIsError, updatedIsError?.data])
+    }, [updateIsSuccess, updatedIsError, updatedIsError?.data, reset])
 
     // Use Effecte after matchedUser found/response
     useEffect(() => {

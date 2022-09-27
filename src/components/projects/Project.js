@@ -16,7 +16,7 @@ const Project = ({ project }) => {
     const { bgColor, textColor, name: teamName } = team || {};
     const { name: ownerName, email: ownerEmail, avater } = owner || {};
 
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [drag] = useDrag(() => ({
         type: "project",
         item: { id: projectId, data: { ...project } },
         collect: (monitor) => ({

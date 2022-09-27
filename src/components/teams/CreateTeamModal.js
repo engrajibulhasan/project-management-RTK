@@ -41,7 +41,7 @@ export default function CreateTeamModal({ open, control }) {
         } else if (isError) {
             toast.error(responseError.data, TOAST);
         }
-    }, [isSuccess, isError, responseError])
+    }, [isSuccess, isError, responseError, reset])
 
 
     // Debounce Function. Step Two
